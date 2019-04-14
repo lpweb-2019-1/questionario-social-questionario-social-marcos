@@ -1,0 +1,215 @@
+<!-- Tamplate de cadastro de pessoas. Nome, Sexo, Idade, Cidade. -->
+
+<div class=container>
+  <h1> Formulário de Cadastro de Pessoas</h1>
+
+
+<form #cadastro="ngForm" (submit)="salvar(cadastro)">
+
+  <div class="form-group">
+    <input type="text" id="nome" name="nome" [(ngModel)]="nome" class="form-control" placeholder="Nome" required>
+ 
+  </div>
+
+  <div class="form-group">
+    <input type="number" id="idade" name="idade" [(ngModel)]="idade" class="form-control" placeholder="Idade" required>
+
+  </div>
+<!--
+  <div class="form-group">
+    <label for="sexo">Sexo</label>
+  <select  id="sexo" name="sexo" [(ngModel)]="sexo" class="form-control" required>
+
+        <option>Feminino</option>
+        <option>Masculino</option>
+
+        
+      </select>
+  </div>
+-->
+<div class="form-group">
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="sexo" [(ngModel)]="sexo" id="Masculino" value="Masculino">
+    <label class="form-check-label" for="Masculino">Masculino</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="sexo" [(ngModel)]="sexo" id="Feminino" value="Feminino">
+    <label class="form-check-label" for="Feminino">Feminino</label>
+  </div>
+ 
+</div>
+
+  <div class="form-group">
+    <label for="cidade">Cidade</label>
+      <select class="form-control" name="cidade" id="cidade" [(ngModel)]="cidade"  required>
+          <option>Palmas</option>
+          <option>Porto Nascional</option>
+          <option>Paraiso</option>
+        </select>
+     
+  </div>
+  
+  <div>
+      <button type="submit" class="btn btn-primary" [disabled]="!cadastro.form.valid">Cadastar</button>
+      <button type="reset" class="btn btn-secondary" formnovalidate>Limpar</button>
+  </div>
+</form>
+</div>
+<br>
+
+<div class="container">
+  
+        <h5 style="text-align: center">Idade</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">          
+              <tr>
+                <th>#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Idade</th>            
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pessoa of pessoas.PessoaNova()">
+                <th scope="row">Mais Novo(a)</th>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.sexo }} </td>
+                <td>{{ pessoa.idade }}
+    
+                </tr>
+                <tr *ngFor="let pessoa of pessoas.PessoaVelha()">
+                    <th scope="row">Mais Velho(a)</th>
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.sexo }} </td>
+                    <td>{{ pessoa.idade }}
+        
+                    </tr>
+              </tbody>
+        </table>
+        <div>
+<br>
+
+  <div>
+      <h5 style="text-align: center">Media de Idade por Sexo</h5>
+      <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Sexo</th>
+              <th scope="col">Média</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Feminino</th>
+              <td>{{ pessoas.mediaFeminina() }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Masculino</th>
+                <td>{{ pessoas.mediaMasculina() }}</td>
+               </tr>
+            </tbody>
+            </table>
+
+  </div>
+
+<div>
+    <h5 style="text-align: center">Média de Idade por Cidade</h5>
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Cidade</th>
+      <th scope="col">Média de Idade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Palmas</th>
+      <td>{{ pessoas.mediaCidade("Palmas") }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Paraiso</th>
+        <td>{{ pessoas.mediaCidade("Paraiso") }}</td>
+      </tr>
+      <tr>
+          <th scope="row">Porto Nascional</th>
+          <td>{{ pessoas.mediaCidade("Porto Nascional") }}</td>
+        </tr>
+  </tbody>
+</table>
+
+</div>
+
+
+<div>
+    <h5 style="text-align: center">Porcentagem de Pessoas por Genero e Cidade </h5>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Cidade</th>
+          <th scope="col">Média de Idade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Palmas</th>
+          <td>{{ pessoas.mediaCidade("Palmas") }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Paraiso</th>
+            <td>{{ pessoas.mediaCidade("Paraiso") }}</td>
+          </tr>
+          <tr>
+              <th scope="row">Porto Nascional</th>
+              <td>{{ pessoas.mediaCidade("Porto Nascional") }}</td>
+            </tr>
+      </tbody>
+    </table>
+</div>
+
+
+<div>
+    <h5 style="text-align: center">Quantitativos por cidade </h5>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Cidade</th>
+          <th scope="col">Porcentagem</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr scope="all" class="thead-light" style="text-align: center">  Mulheres </tr>
+        <tr>
+          <th scope="row">Palmas</th>
+          <td>{{ (pessoas.mediaSexoCidade().Palmas.F) }} % </td>
+        </tr>
+
+        <tr>
+            <th scope="row">Paraiso</th>
+            <td> {{ pessoas.mediaSexoCidade().Paraiso.F }} % </td>
+          </tr>
+          <tr>
+              <th scope="row">Porto Nascional</th>
+              <td>{{ pessoas.mediaSexoCidade().Porto.F }} % </td>
+            </tr>
+
+            <tr scope="all" class="thead-light" style="text-align: center">  Homens </tr>
+            <tr>
+              <th scope="row">Palmas</th>
+              <td>{{ (pessoas.mediaSexoCidade().Palmas.M) }} % </td>
+            </tr>
+    
+            <tr>
+                <th scope="row">Paraiso</th>
+                <td>{{ pessoas.mediaSexoCidade().Paraiso.M }} % </td>
+              </tr>
+              <tr>
+                  <th scope="row">Porto Nascional</th>
+                  <td>{{ pessoas.mediaSexoCidade().Porto.M }} % </td>
+                </tr>
+      </tbody>
+    </table>
+</div>
+
+
+</div>
+
