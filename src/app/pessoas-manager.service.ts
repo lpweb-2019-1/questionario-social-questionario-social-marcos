@@ -99,42 +99,38 @@ pessoas = [];
         cont = cont + 1;
       }
     }
+    if (soma > 0){
     return (soma/cont).toFixed(1);
+    }
+    else {
+      return 0
+    }
   }
 
-  mediaSexoCidade(cidade, sexo){
-    let pessoas =  JSON.parse(localStorage.getItem("pessoas"));
-    
-    for (const pessoa of pessoas){
-      if (pessoa.cidade == 'Palmas' && pessoa.sexo == "Feminino"){
-       this.cidades.Palmas.F =+ 1;
-       this.cidades.Palmas.cont =+ 1;
+  mediaSexoCidade(cidade, sexo) {
+    let porcentagem = 0;
+    let qtPessoas = 0
+    let totalPessoas = 0;
+    let pessoas = JSON.parse(localStorage.getItem('pessoas'));
+    for(var i=0; i< pessoas.length; i++) {
+      if (pessoas[i].cidade ==  cidade) {
+          totalPessoas ++;
+        if (pessoas[i].sexo == sexo){
+          qtPessoas ++;
+        }
       }
-      else if (pessoa.cidade == 'Palmas' && pessoa.sexo == "Masculino"){
-        this.cidades.Palmas.M =+ 1;
-        this.cidades.Palmas.cont =+ 1;
-        
-      }
-      else if (pessoa.cidade == 'Paraiso' && pessoa.sexo == "Feminino"){
-        this.cidades.Paraiso.F =+ 1;
-        this.cidades.Paraiso.cont =+ 1;
+      
     }
-    else if (pessoa.cidade == 'Paraiso' && pessoa.sexo == "Masculino"){
-      this.cidades.Paraiso.M =+ 1;
-      this.cidades.Paraiso.cont =+ 1;
-    }
-    else if (pessoa.cidade == 'Porto Nascional' && pessoa.sexo == "Feminino"){
-      this.cidades.Porto.F =+ 1;
-      this.cidades.Porto.cont =+ 1;      
-    }
-    else if (pessoa.cidade == 'Porto Nascional' && pessoa.sexo == "Masculino"){
-      this.cidades.Porto.M =+ 1;
-      this.cidades.Porto.cont =+ 1;  
-    };
+    porcentagem = (qtPessoas*100)/totalPessoas
+    if (qtPessoas > 0) {
+      return porcentagem;
+          
   }
-  
-    
-  }
+    else {
+      return 0;
+    }
+
+}
 }
 
 

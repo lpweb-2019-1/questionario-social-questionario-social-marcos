@@ -28,6 +28,7 @@
   </div>
 -->
 <div class="form-group">
+  <label for="sexo">Sexo</label> <br>
 <div class="form-check form-check-inline">
     <input class="form-check-input" type="radio" name="sexo" [(ngModel)]="sexo" id="Masculino" value="Masculino">
     <label class="form-check-label" for="Masculino">Masculino</label>
@@ -141,34 +142,7 @@
 
 
 <div>
-    <h5 style="text-align: center">Porcentagem de Pessoas por Genero e Cidade </h5>
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Cidade</th>
-          <th scope="col">Média de Idade</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">Palmas</th>
-          <td>{{ pessoas.mediaCidade("Palmas") }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Paraiso</th>
-            <td>{{ pessoas.mediaCidade("Paraiso") }}</td>
-          </tr>
-          <tr>
-              <th scope="row">Porto Nascional</th>
-              <td>{{ pessoas.mediaCidade("Porto Nascional") }}</td>
-            </tr>
-      </tbody>
-    </table>
-</div>
-
-
-<div>
-    <h5 style="text-align: center">Quantitativos por cidade </h5>
+    <h5 style="text-align: center">Porcentagem de Homens x Mulheres por Cidade</h5>
     <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
@@ -180,31 +154,31 @@
        <tr scope="all" class="thead-light" style="text-align: center">  Mulheres </tr>
         <tr>
           <th scope="row">Palmas</th>
-          <td>{{ (pessoas.mediaSexoCidade().Palmas.F) }} % </td>
+          <td>{{ pessoas.mediaSexoCidade("Palmas", "Feminino") }} % </td>
         </tr>
 
         <tr>
             <th scope="row">Paraiso</th>
-            <td> {{ pessoas.mediaSexoCidade().Paraiso.F }} % </td>
+            <td> {{ pessoas.mediaSexoCidade("Paraiso", "Feminino") }} % </td>
           </tr>
           <tr>
               <th scope="row">Porto Nascional</th>
-              <td>{{ pessoas.mediaSexoCidade().Porto.F }} % </td>
+              <td>{{ pessoas.mediaSexoCidade("Porto Nascional", "Feminino") }} % </td>
             </tr>
 
             <tr scope="all" class="thead-light" style="text-align: center">  Homens </tr>
             <tr>
               <th scope="row">Palmas</th>
-              <td>{{ (pessoas.mediaSexoCidade().Palmas.M) }} % </td>
+              <td>{{ pessoas.mediaSexoCidade("Palmas", "Masculino") }} % </td>
             </tr>
     
             <tr>
                 <th scope="row">Paraiso</th>
-                <td>{{ pessoas.mediaSexoCidade().Paraiso.M }} % </td>
+                <td>{{ pessoas.mediaSexoCidade("Paraiso", "Masculino") }} % </td>
               </tr>
               <tr>
                   <th scope="row">Porto Nascional</th>
-                  <td>{{ pessoas.mediaSexoCidade().Porto.M }} % </td>
+                  <td>{{ pessoas.mediaSexoCidade("Porto Nascional", "Masculino") }} % </td>
                 </tr>
       </tbody>
     </table>
